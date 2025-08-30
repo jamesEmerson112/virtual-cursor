@@ -21,6 +21,7 @@ import sys
 
 # Configuration constants
 DURATION = 0.01 # Animation duration in seconds
+PIXELS_PER_MOVE = 10
 
 # Global flag for interrupt handling
 interrupted = False
@@ -42,7 +43,7 @@ def monitor_escape_key():
 
 
 
-def animate_circular_movement():
+def mouse_move():
     """Main animation loop for circular mouse movement."""
     global interrupted
 
@@ -59,44 +60,32 @@ def animate_circular_movement():
             # Get initial cursor position as circle center
             original_x, original_y = pyautogui.position()
 
+            dx = 0
+            dy = 0
+
+            if (TODO: MOVING LEFT):
+                dx -= 1
+            if (TODO: MOVING RIGHT):
+                dx += 1
+
+            if (TODO: MOVING UP):
+                dy -= 1
+            if (TODO: MOVING DOWN):
+                dy += 1
+
             # Calculate new position
-            x, y = calculate_circle_position(original_x, original_y, RADIUS, angle)
+            x += PIXELS_PER_MOVE * dx
+            y += PIXELS_PER_MOVE * dy
 
             # Move mouse to calculated position
             pyautogui.moveTo(x, y, duration=0)
 
-            # Update angle for next frame
-            angle += angle_increment
-            frame_count += 1
-
             # Maintain frame rate
-            time.sleep(FRAME_TIME)
-
-            # Progress indicator (every 30 frames = 1 second)
-            if frame_count % FPS == 0:
-                print(f"Time elapsed: {elapsed_time:.1f}s")
-
-        # Restore cursor to original position
-        print(f"Restoring cursor to original position ({original_x}, {original_y})")
-        pyautogui.moveTo(original_x, original_y, duration=0.5)
-
-        print("Circular movement complete!")
-
-    except KeyboardInterrupt:
-        print("\nInterrupted by Ctrl+C. Stopping movement...")
-        # Restore cursor position
-        if 'center_x' in locals() and 'center_y' in locals():
-            pyautogui.moveTo(original_x, original_y, duration=0.5)
-
-    except Exception as e:
-        print(f"Error during animation: {e}")
-        return False
+            time.sleep(DURATION)
 
     finally:
         # Re-enable PyAutoGUI fail-safe
         pyautogui.FAILSAFE = True
-
-    return True
 
 
 def check_dependencies():
@@ -124,36 +113,12 @@ def check_dependencies():
 
 
 def main():
-    """Main execution function."""
-    print("=" * 50)
-    print("Circular Mouse Movement Automation")
-    print("=" * 50)
-
     # Check dependencies
     if not check_dependencies():
         sys.exit(1)
 
-    # Safety warning
-    print("\nSAFETY NOTE: This script will control your mouse cursor.")
-    print("Make sure you're ready before proceeding.")
-    print("The cursor will move in a circle for 5 seconds.")
-
-    # Confirmation prompt
-    try:
-        input("\nPress ENTER to start the circular movement (or Ctrl+C to cancel)...")
-    except KeyboardInterrupt:
-        print("\nCancelled by user.")
-        sys.exit(0)
-
     # Start the animation
-    success = animate_circular_movement()
-
-    if success:
-        print("\nProgram completed successfully!")
-    else:
-        print("\nProgram terminated with errors.")
-        sys.exit(1)
-
+    mouse_move()
 
 if __name__ == "__main__":
     main()

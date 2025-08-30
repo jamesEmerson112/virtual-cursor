@@ -14,7 +14,6 @@ Features:
 """
 
 import pyautogui
-import math
 import time
 import threading
 import sys

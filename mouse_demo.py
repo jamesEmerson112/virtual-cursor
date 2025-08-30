@@ -224,14 +224,16 @@ class SpotifyLive(LiveAdvance):
             # Main animation loop
             while not interrupted:
                 # Get initial cursor position as circle center
-                original_x, original_y = pyautogui.position()
+                x, y = pyautogui.position()
 
                 dx = 0
                 dy = 0
 
                 if action == 'left' and power > 0.5:
+                    print("LEFT")
                     dx -= 1
                 if action == 'right' and power > 0.5:
+                    print("RIGHT")
                     dx += 1
 
                 if action == 'lift' and power > 0.5:
@@ -270,45 +272,46 @@ def start_emotiv_live():
     """Main animation loop for circular mouse movement."""
     global interrupted
 
-    try:
-        # Disable PyAutoGUI fail-safe temporarily for smooth movement
-        pyautogui.FAILSAFE = False
 
-        # Start keyboard monitoring thread
-        keyboard_thread = threading.Thread(target=monitor_escape_key, daemon=True)
-        keyboard_thread.start()
+    # try:
+    #     # Disable PyAutoGUI fail-safe temporarily for smooth movement
+    #     pyautogui.FAILSAFE = False
 
-        # Main animation loop
-        while not interrupted:
-            # Get initial cursor position as circle center
-            original_x, original_y = pyautogui.position()
+    #     # Start keyboard monitoring thread
+    #     keyboard_thread = threading.Thread(target=monitor_escape_key, daemon=True)
+    #     keyboard_thread.start()
 
-            dx = 0
-            dy = 0
+    #     # Main animation loop
+    #     while not interrupted:
+    #         # Get initial cursor position as circle center
+    #         original_x, original_y = pyautogui.position()
 
-            if (TODO: MOVING LEFT):
-                dx -= 1
-            if (TODO: MOVING RIGHT):
-                dx += 1
+    #         dx = 0
+    #         dy = 0
 
-            if (TODO: MOVING UP):
-                dy -= 1
-            if (TODO: MOVING DOWN):
-                dy += 1
+    #         if (TODO: MOVING LEFT):
+    #             dx -= 1
+    #         if (TODO: MOVING RIGHT):
+    #             dx += 1
 
-            # Calculate new position
-            x += PIXELS_PER_MOVE * dx
-            y += PIXELS_PER_MOVE * dy
+    #         if (TODO: MOVING UP):
+    #             dy -= 1
+    #         if (TODO: MOVING DOWN):
+    #             dy += 1
 
-            # Move mouse to calculated position
-            pyautogui.moveTo(x, y, duration=0)
+    #         # Calculate new position
+    #         x += PIXELS_PER_MOVE * dx
+    #         y += PIXELS_PER_MOVE * dy
 
-            # Maintain frame rate
-            time.sleep(DURATION)
+    #         # Move mouse to calculated position
+    #         pyautogui.moveTo(x, y, duration=0)
 
-    finally:
-        # Re-enable PyAutoGUI fail-safe
-        pyautogui.FAILSAFE = True
+    #         # Maintain frame rate
+    #         time.sleep(DURATION)
+
+    # finally:
+    #     # Re-enable PyAutoGUI fail-safe
+    #     pyautogui.FAILSAFE = True
 
 # -----------------------------
 # Main

@@ -1,0 +1,19 @@
+# Circular Mouse Movement Automation Dependencies
+# ================================================
+
+# PyAutoGUI - Cross-platform GUI automation for mouse control
+pyautogui>=0.9.54
+
+# Keyboard - For escape key interrupt detection
+keyboard>=0.13.5
+
+# Additional system dependencies that may be required:
+# - On Linux: python3-tk, python3-dev, scrot, python3-xlib
+# - On macOS: No additional dependencies typically needed
+# - On Windows: No additional dependencies typically needed
+
+# Installation instructions:
+# pip install -r requirements.txt
+#
+# Note: On some systems, you may need to run with elevated privileges:
+# sudo pip install -r requirements.txt

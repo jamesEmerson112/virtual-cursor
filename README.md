@@ -29,7 +29,7 @@ A Python-based automation tool that moves your mouse cursor in a perfect circle 
 
 3. **Run the program:**
    ```bash
-   python circular_mouse.py
+   python main.py
    ```
 
 ### Usage

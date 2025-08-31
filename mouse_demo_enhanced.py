@@ -395,15 +395,15 @@ class SpotifyLive(LiveAdvance):
         print("power = ", power)
 
         if action == 'lift' and power > 0.5:
-            print("🎯 LIFT detected -> Spotify PAUSE")
+            print("🎯 LIFT detected")
             # spotify_pause(access_token_global)
-        elif action == 'drop' and power > 0.5:
-            print("🔄 DROP detected -> Spotify RESUME")
+        elif action == 'pull' and power > 0.5:
+            print("🔄 PULL detected")
             # spotify_resume(access_token_global)
         elif action == 'neutral':
             print("😐 Neutral state - no action")
         elif action == 'push' and power > 0.5:
-            print("push")
+            print("PUSH")
 
         try:
             # Disable PyAutoGUI fail-safe temporarily for smooth movement
